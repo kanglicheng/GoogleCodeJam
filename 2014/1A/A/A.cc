@@ -1,10 +1,78 @@
-#include <cstdio>
-#include <cstring>
+#include <iostream>
+#include <string>
 #include <algorithm>
 #include <vector>
+#include <unordered_set>
 
 using namespace std;
 
+int N, L;
+vector<string> A, B;
+unordered_set<string> Hash;
+vector<bool> flip;
+
+bool check() {
+    for (int i = 0; i < N; ++ i) {
+        string S = A[i];
+        for (int j = 0; j < L; ++ j)
+            if (flip[j])
+                S[j] = char(int('1') + int('0') - int(S[j]));
+        if (Hash.find(S) == Hash.end())
+            return false;
+    }
+    return true;
+}
+
+int solve() {
+    cin >> N >> L;
+    A.clear(); B.clear();
+    Hash.clear();
+    for (int i = 0; i < N; ++ i) {
+        string temp;
+        cin >> temp;
+        A.push_back(temp);
+    }
+    for (int i = 0; i < N; ++ i) {
+        string temp;
+        cin >> temp;
+        B.push_back(temp);
+        Hash.insert(temp);
+    }
+    string left = A[0];
+    int ret = -1;
+    for (int i = 0; i < N; ++ i) {
+        string right = B[i];
+        flip.clear();
+        int total = 0;
+        for (int j = 0; j < L; ++ j)
+            if (left[j] != right[j]) {
+                ++ total;
+                flip.push_back(true);
+            }
+            else
+                flip.push_back(false);
+        if (ret == -1 || total < ret)
+            if (check())
+                ret = total;
+    }
+    return ret;
+}
+
+int main() {
+    int test;
+    cin >> test;
+    for (int i = 1; i <= test; ++ i) {
+        cout << "Case #" << i << ": ";
+        int ans = solve();
+        if (ans == -1)
+            cout << "NOT POSSIBLE" << endl;
+        else
+            cout << ans << endl;
+    }
+    return 0;
+}
+
+/*
 const int maxL = 40;
 //const int maxN = 150;
 
@@ -83,3 +151,4 @@ int main() {
     }
     return 0;
 }
+*/
