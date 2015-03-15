@@ -9,9 +9,7 @@ int B[4];
 
 int main() {
     int T;
-
     scanf("%d", &T); 
-
     int test = 0;
     while (T --) {
         ++ test;
@@ -49,9 +47,9 @@ int main() {
                     printf("%d\n", ans);
                 else
                     printf("Bad magician!\n");
-
             }
         }
     }
     return 0;
 }
+
