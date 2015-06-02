@@ -18,8 +18,8 @@ vector<string> map;
 
 bool check(int x, int y, int d) {
     for (;;) {
-        x += direction[d];
-        y += direction[d];
+        x += dx[d];
+        y += dy[d];
         if (x >= R || x < 0 || y >= C || y < 0) return false;
         if (map[x][y] != '.') return true;
     }
@@ -47,10 +47,11 @@ int main() {
     int T;
     scanf("%d", &T);
     for (int test = 1; test <= T; ++ test) {
+        map.clear();
         scanf("%d%d", &R, &C);
         for (int i = 0; i < R; ++ i) {
             string temp;
-            con >> temp;
+            cin >> temp;
             map.push_back(temp);
         }
         printf("Case #%d: ", test);
