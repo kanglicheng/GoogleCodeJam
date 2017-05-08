@@ -7,6 +7,7 @@ https://code.google.com/codejam
     * Qualification Round
     * Round 1A
     * Round 1B
+    * Round 1C
 
 * Google Code Jam 2016
     * Qualification Round
